@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PE Civil Texas Prep | 1,500-Question Practice Platform</title>
+  <style>
+    :root {
+      --primary: #0f172a;
+      --secondary: #334155;
+      --accent: #2563eb;
+      --background: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --success: #15803d;
+      --danger: #b91c1c;
+      --warning: #ca8a04;
+      --muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--background);
+      color: var(--primary);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      color: #ffffff;
+      padding: 48px 24px;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .hero-text {
+      font-size: 18px;
+      color: #dbeafe;
+      max-width: 780px;
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 22px;
+      padding: 24px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-card h2 {
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    .hero-card p {
+      color: #dbeafe;
+      margin-bottom: 12px;
+    }
+
+    main {
+      padding: 32px 24px 64px;
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .control-card, .summary-card, .question-card, .analytics-card, .notice-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05);
+    }
+
+    .notice-card {
+      margin-bottom: 24px;
+      background: #eff6ff;
+      border-color: #bfdbfe;
+      color: #1e3a8a;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--secondary);
+      font-size: 14px;
+    }
+
+    select, input, button {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font-size: 15px;
+      background: white;
+    }
+
+    button {
+      cursor: pointer;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background: #f1f5f9;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .summary-card h3 {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .summary-card .metric {
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .question-list {
+      display: grid;
+      gap: 20px;
+    }
+
+    .question-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+    }
+
+    .badge.gray {
+      background: #f1f5f9;
+      color: #475569;
+      border-color: #e2e8f0;
+    }
+
+    .badge.gold {
+      background: #fefce8;
+      color: #854d0e;
+      border-color: #fde68a;
+    }
+
+    .question-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .option {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 13px;
+      background: #ffffff;
+      cursor: pointer;
+    }
+
+    .option:hover {
+      border-color: var(--accent);
+      background: #f8fafc;
+    }
+
+    .option.selected {
+      border-color: var(--accent);
+      background: #eff6ff;
+      font-weight: 700;
+    }
+
+    .option.correct {
+      border-color: var(--success);
+      background: #f0fdf4;
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .option.incorrect {
+      border-color: var(--danger);
+      background: #fef2f2;
+      color: var(--danger);
+      font-weight: 700;
+    }
+
+    .explanation {
+      display: none;
+      margin-top: 14px;
+      padding: 14px;
+      background: #f8fafc;
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      color: var(--secondary);
+    }
+
+    .explanation.show {
+      display: block;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .analytics-card h2 {
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    .bar-row {
+      margin-bottom: 14px;
+    }
+
+    .bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: var(--secondary);
+    }
+
+    .bar-track {
+      width: 100%;
+      height: 12px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+
+    .recommendation {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 12px;
+      background: #ffffff;
+    }
+
+    .recommendation strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    footer {
+      padding: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      text-align: center;
+      background: #ffffff;
+    }
+
+    @media (max-width: 1000px) {
+      .hero-grid, .toolbar, .dashboard, .analytics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .options, .actions {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container hero-grid">
+      <div>
+        <div class="brand">PE Civil Texas Prep</div>
+        <h1>1,500-Question PE Civil Practice Platform</h1>
+        <p class="hero-text">
+          A commercial-style practice webpage for civil engineers preparing for the PE Civil exam, with 500 Easy, 500 Medium, and 500 Hard generated practice questions and post-test performance analytics.
+        </p>
+      </div>
+      <div class="hero-card">
+        <h2>Platform Functions</h2>
+        <p>500 questions per difficulty level</p>
+        <p>Five PE Civil discipline filters</p>
+        <p>Randomized practice set generation</p>
+        <p>Topic-level analytics and remediation guidance</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="notice-card">
+      <strong>Content note:</strong> This prototype generates original sample questions from civil engineering templates for demonstration and product-development purposes. A commercial platform should conduct technical review, item calibration, copyright review, and alignment checking before publication.
+    </section>
+
+    <section class="toolbar">
+      <div class="control-card">
+        <label for="disciplineFilter">PE Civil Discipline</label>
+        <select id="disciplineFilter" onchange="renderQuestions()">
+          <option value="All">All Disciplines</option>
+          <option value="Water Resources & Environmental">Water Resources & Environmental</option>
+          <option value="Transportation">Transportation</option>
+          <option value="Structural">Structural</option>
+          <option value="Geotechnical">Geotechnical</option>
+          <option value="Construction">Construction</option>
+        </select>
+      </div>
+
+      <div class="control-card">
+        <label for="difficultyFilter">Difficulty</label>
+        <select id="difficultyFilter" onchange="renderQuestions()">
+          <option value="All">All Levels</option>
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+          <option value="Hard">Hard</option>
+        </select>
+      </div>
+
+      <div class="control-card">
+        <label for="setSize">Practice Set Size</label>
+        <select id="setSize" onchange="buildPracticeSet()">
+          <option value="10">10 Questions</option>
+          <option value="20" selected>20 Questions</option>
+          <option value="40">40 Questions</option>
+          <option value="80">80 Questions</option>
+          <option value="1500">Full Bank</option>
+        </select>
+      </div>
+
+      <div class="control-card">
+        <label>Generate</label>
+        <button class="btn-secondary" onclick="buildPracticeSet()">New Practice Set</button>
+      </div>
+
+      <div class="control-card">
+        <label>Submit</label>
+        <button class="btn-primary" onclick="submitTest()">Submit Test</button>
+      </div>
+    </section>
+
+    <section class="dashboard">
+      <div class="summary-card">
+        <h3>Question Bank</h3>
+        <div class="metric" id="bankSize">1,500</div>
+      </div>
+      <div class="summary-card">
+        <h3>Visible Questions</h3>
+        <div class="metric" id="totalQuestions">0</div>
+      </div>
+      <div class="summary-card">
+        <h3>Answered</h3>
+        <div class="metric" id="answeredQuestions">0</div>
+      </div>
+      <div class="summary-card">
+        <h3>Score</h3>
+        <div class="metric" id="scoreMetric">0%</div>
+      </div>
+      <div class="summary-card">
+        <h3>Readiness</h3>
+        <div class="metric" id="readinessMetric">Not Rated</div>
+      </div>
+    </section>
+
+    <section id="questionList" class="question-list"></section>
+
+    <section class="actions">
+      <button class="btn-secondary" onclick="startFreshTest()">Reset Answers</button>
+      <button class="btn-secondary" onclick="buildPracticeSet()">Randomize Set</button>
+      <button class="btn-primary" onclick="submitTest()">Submit and View Analytics</button>
+    </section>
+
+    <section class="analytics-grid">
+      <div class="analytics-card">
+        <h2>Topic-Level Performance</h2>
+        <div id="topicAnalytics"></div>
+      </div>
+
+      <div class="analytics-card">
+        <h2>Post-Test Recommendations</h2>
+        <div id="recommendations">
+          <div class="recommendation">
+            <strong>Before submission</strong>
+            Complete the practice test to generate topic-level diagnostics and recommended study priorities.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    PE Civil Texas Prep prototype. The page contains a generated 1,500-question sample bank: 500 Easy, 500 Medium, and 500 Hard questions.
+  </footer>
+
+  <script>
+    const disciplines = [
+      "Water Resources & Environmental",
+      "Transportation",
+      "Structural",
+      "Geotechnical",
+      "Construction"
+    ];
+
+    const topicMap = {
+      "Water Resources & Environmental": ["Hydrology", "Hydraulics", "Open Channel Flow", "Water Quality", "Environmental Processes"],
+      "Transportation": ["Traffic Operations", "Geometric Design", "Pavement Design", "Transportation Planning", "Roadside Safety"],
+      "Structural": ["Structural Analysis", "Loads and Load Paths", "Concrete Design", "Steel Design", "Foundation Interface"],
+      "Geotechnical": ["Soil Mechanics", "Effective Stress", "Foundations", "Slope Stability", "Seepage"],
+      "Construction": ["Project Scheduling", "Cost Estimating", "Construction Safety", "Contracts", "Quantity Takeoff"]
+    };
+
+    const templates = {
+      Easy: [
+        {
+          topic: "Hydrology",
+          discipline: "Water Resources & Environmental",
+          make: i => {
+            const c = 0.35 + (i % 6) * 0.08;
+            const intensity = 2 + (i % 5);
+            const area = 10 + (i % 9) * 5;
+            const q = +(c * intensity * area).toFixed(1);
+            return makeQuestion(i, "Easy", "Water Resources & Environmental", "Hydrology",
+              `Using Q = C i A, estimate peak runoff for C = ${c.toFixed(2)}, rainfall intensity = ${intensity} in/hr, and drainage area = ${area} acres.`,
+              [`${q} cfs`, `${(q + 8).toFixed(1)} cfs`, `${Math.max(q - 6, 1).toFixed(1)} cfs`, `${(q * 2).toFixed(1)} cfs`],
+              `${q} cfs`,
+              `Using Q = C i A, Q = ${c.toFixed(2)} × ${intensity} × ${area} = ${q} cfs.`);
+          }
+        },
+        {
+          topic: "Traffic Operations",
+          discipline: "Transportation",
+          make: i => makeQuestion(i, "Easy", "Transportation", "Traffic Operations",
+            "Which measure is commonly used to evaluate signalized intersection performance from the perspective of user delay?",
+            ["Average control delay", "Soil bearing capacity", "Concrete slump", "Hydraulic radius"],
+            "Average control delay",
+            "Average control delay is a standard traffic operations measure for signalized intersections.")
+        },
+        {
+          topic: "Structural Analysis",
+          discipline: "Structural",
+          make: i => makeQuestion(i, "Easy", "Structural", "Structural Analysis",
+            "For a simply supported beam carrying a uniformly distributed load over the full span, where does the maximum positive bending moment typically occur?",
+            ["At midspan", "At both supports", "Outside the span", "At one-quarter span only"],
+            "At midspan",
+            "For a full-span uniform load on a simple beam, maximum positive moment occurs at midspan.")
+        },
+        {
+          topic: "Effective Stress",
+          discipline: "Geotechnical",
+          make: i => makeQuestion(i, "Easy", "Geotechnical", "Effective Stress",
+            "If pore water pressure increases while total vertical stress remains constant, what happens to effective stress?",
+            ["It decreases", "It increases", "It remains unchanged", "It becomes equal to total stress"],
+            "It decreases",
+            "Effective stress equals total stress minus pore water pressure; therefore, increasing pore pressure reduces effective stress.")
+        },
+        {
+          topic: "Project Scheduling",
+          discipline: "Construction",
+          make: i => makeQuestion(i, "Easy", "Construction", "Project Scheduling",
+            "Which activity should receive priority when attempting to reduce the total duration of a construction project?",
+            ["An activity on the critical path", "An activity with large float", "A completed submittal", "A noncritical procurement note"],
+            "An activity on the critical path",
+            "Activities on the critical path control project completion. Reducing their duration can reduce total project duration.")
+        }
+      ],
+      Medium: [
+        {
+          topic: "Hydraulics",
+          discipline: "Water Resources & Environmental",
+          make: i => {
+            const d = 24 + (i % 5) * 6;
+            const slope = 0.001 + (i % 4) * 0.0005;
+            const n = 0.013;
+            const area = Math.PI * Math.pow(d / 12, 2) / 4;
+            const r = (d / 12) / 4;
+            const q = +((1.49 / n) * area * Math.pow(r, 2 / 3) * Math.sqrt(slope)).toFixed(1);
+            return makeQuestion(i, "Medium", "Water Resources & Environmental", "Hydraulics",
+              `Estimate full-flow capacity of a ${d}-inch circular concrete pipe using Manning's equation, n = ${n}, and slope = ${slope.toFixed(4)} ft/ft.`,
+              [`${q} cfs`, `${(q * 0.75).toFixed(1)} cfs`, `${(q * 1.25).toFixed(1)} cfs`, `${(q + 20).toFixed(1)} cfs`],
+              `${q} cfs`,
+              `For a full circular pipe, A = πD²/4 and R = D/4. Substitution in Manning's equation gives approximately ${q} cfs.`);
+          }
+        },
+        {
+          topic: "Pavement Design",
+          discipline: "Transportation",
+          make: i => makeQuestion(i, "Medium", "Transportation", "Pavement Design",
+            "In flexible pavement design, why are stronger base and subbase layers commonly used above a weaker subgrade?",
+            ["To distribute wheel loads and reduce subgrade stress", "To eliminate all traffic loading", "To replace drainage design", "To increase signal timing efficiency"],
+            "To distribute wheel loads and reduce subgrade stress",
+            "Flexible pavement layers spread wheel loads over a larger area, thereby reducing stresses transmitted to the subgrade.")
+        },
+        {
+          topic: "Loads and Load Paths",
+          discipline: "Structural",
+          make: i => makeQuestion(i, "Medium", "Structural", "Loads and Load Paths",
+            "Which statement best describes a continuous structural load path?",
+            ["It transfers forces from the point of application to the foundation", "It eliminates the need for lateral stability", "It applies only to nonstructural walls", "It is unrelated to member connections"],
+            "It transfers forces from the point of application to the foundation",
+            "A load path describes how structural forces move through members and connections to the supporting foundation.")
+        },
+        {
+          topic: "Foundations",
+          discipline: "Geotechnical",
+          make: i => makeQuestion(i, "Medium", "Geotechnical", "Foundations",
+            "Which condition would generally increase concern about shallow foundation settlement?",
+            ["Compressible soil beneath the footing", "Competent rock at shallow depth", "Lower applied structural load", "Improved compaction below the footing"],
+            "Compressible soil beneath the footing",
+            "Compressible soil can deform under applied foundation loads, increasing settlement potential.")
+        },
+        {
+          topic: "Cost Estimating",
+          discipline: "Construction",
+          make: i => makeQuestion(i, "Medium", "Construction", "Cost Estimating",
+            "A construction estimate commonly includes which major categories?",
+            ["Labor, materials, equipment, overhead, and profit", "Only design rainfall intensity", "Only average daily traffic", "Only soil void ratio"],
+            "Labor, materials, equipment, overhead, and profit",
+            "Construction estimates typically include direct costs, indirect costs, overhead, and profit allowances.")
+        }
+      ],
+      Hard: [
+        {
+          topic: "Open Channel Flow",
+          discipline: "Water Resources & Environmental",
+          make: i => {
+            const b = 6 + (i % 6);
+            const y = 2 + (i % 4) * 0.5;
+            const z = 2;
+            const slope = 0.0015;
+            const n = 0.035;
+            const area = y * (b + z * y);
+            const wetted = b + 2 * y * Math.sqrt(1 + z * z);
+            const r = area / wetted;
+            const q = +((1.49 / n) * area * Math.pow(r, 2 / 3) * Math.sqrt(slope)).toFixed(1);
+            return makeQuestion(i, "Hard", "Water Resources & Environmental", "Open Channel Flow",
+              `A trapezoidal grass-lined channel has bottom width ${b} ft, flow depth ${y.toFixed(1)} ft, side slope 2H:1V, Manning's n = ${n}, and channel slope = ${slope}. Estimate flow capacity.`,
+              [`${q} cfs`, `${(q * 0.60).toFixed(1)} cfs`, `${(q * 1.45).toFixed(1)} cfs`, `${(q + 55).toFixed(1)} cfs`],
+              `${q} cfs`,
+              `For a trapezoidal section, A = y(b + zy), P = b + 2y√(1+z²), and R = A/P. Manning's equation gives approximately ${q} cfs.`);
+          }
+        },
+        {
+          topic: "Geometric Design",
+          discipline: "Transportation",
+          make: i => {
+            const v = 40 + (i % 5) * 5;
+            const t = 2.5;
+            const g = 0;
+            const decel = 11.2;
+            const ssd = Math.round(1.47 * v * t + (v * v) / (30 * (decel / 32.2 + g)));
+            return makeQuestion(i, "Hard", "Transportation", "Geometric Design",
+              `Estimate stopping sight distance for design speed ${v} mph, perception-reaction time ${t} sec, level grade, and comfortable deceleration ${decel} ft/s².`,
+              [`${ssd} ft`, `${Math.round(ssd * 0.70)} ft`, `${Math.round(ssd * 1.30)} ft`, `${Math.round(ssd + 250)} ft`],
+              `${ssd} ft`,
+              `Stopping sight distance includes reaction distance plus braking distance. The computed value is approximately ${ssd} ft.`);
+          }
+        },
+        {
+          topic: "Structural Analysis",
+          discipline: "Structural",
+          make: i => {
+            const w = 1.2 + (i % 6) * 0.4;
+            const L = 20 + (i % 5) * 4;
+            const m = +(w * L * L / 8).toFixed(1);
+            return makeQuestion(i, "Hard", "Structural", "Structural Analysis",
+              `A simply supported beam carries a uniform load of ${w.toFixed(1)} kip/ft over a span of ${L} ft. What is the maximum positive bending moment?`,
+              [`${m} kip-ft`, `${(w * L / 2).toFixed(1)} kip-ft`, `${(m * 0.5).toFixed(1)} kip-ft`, `${(m * 1.5).toFixed(1)} kip-ft`],
+              `${m} kip-ft`,
+              `For a simply supported beam with uniform load, Mmax = wL²/8 = ${w.toFixed(1)} × ${L}² / 8 = ${m} kip-ft.`);
+          }
+        },
+        {
+          topic: "Soil Mechanics",
+          discipline: "Geotechnical",
+          make: i => {
+            const gamma = 120 + (i % 5) * 3;
+            const depth = 10 + (i % 6) * 2;
+            const u = 30 + (i % 5) * 5;
+            const eff = gamma * depth / 1000 - u / 1000;
+            const answer = `${eff.toFixed(2)} ksf`;
+            return makeQuestion(i, "Hard", "Geotechnical", "Soil Mechanics",
+              `At a depth of ${depth} ft, total unit weight is ${gamma} pcf and pore water pressure is ${u} psf. What is the effective vertical stress?`,
+              [answer, `${(eff + 0.50).toFixed(2)} ksf`, `${Math.max(eff - 0.30, 0.01).toFixed(2)} ksf`, `${(gamma * depth / 1000).toFixed(2)} ksf`],
+              answer,
+              `Total vertical stress is γz = ${gamma} × ${depth} = ${gamma * depth} psf. Effective stress is total stress minus pore pressure, or ${answer}.`);
+          }
+        },
+        {
+          topic: "Quantity Takeoff",
+          discipline: "Construction",
+          make: i => {
+            const length = 100 + (i % 8) * 25;
+            const width = 12 + (i % 4) * 2;
+            const thickness = 6 + (i % 3);
+            const cy = +(length * width * (thickness / 12) / 27).toFixed(1);
+            return makeQuestion(i, "Hard", "Construction", "Quantity Takeoff",
+              `Estimate concrete volume for a slab ${length} ft long, ${width} ft wide, and ${thickness} inches thick.`,
+              [`${cy} cubic yards`, `${(cy * 0.75).toFixed(1)} cubic yards`, `${(cy * 1.25).toFixed(1)} cubic yards`, `${(cy + 30).toFixed(1)} cubic yards`],
+              `${cy} cubic yards`,
+              `Concrete volume = length × width × thickness. Convert inches to feet and cubic feet to cubic yards: ${cy} cubic yards.`);
+          }
+        }
+      ]
+    };
+
+    function makeQuestion(seed, difficulty, discipline, topic, question, options, answer, explanation) {
+      return {
+        id: `${difficulty}-${seed}`,
+        discipline,
+        topic,
+        difficulty,
+        question,
+        options: shuffle([...options], seed),
+        answer,
+        explanation
+      };
+    }
+
+    function shuffle(array, seed) {
+      const result = [...array];
+      for (let i = result.length - 1; i > 0; i--) {
+        const j = Math.abs(Math.sin(seed + i) * 10000) % (i + 1) | 0;
+        [result[i], result[j]] = [result[j], result[i]];
+      }
+      return result;
+    }
+
+    function generateQuestionBank() {
+      const bank = [];
+      ["Easy", "Medium", "Hard"].forEach(difficulty => {
+        for (let i = 1; i <= 500; i++) {
+          const templateList = templates[difficulty];
+          const template = templateList[(i - 1) % templateList.length];
+          const q = template.make(i);
+          q.id = `${difficulty}-${i}`;
+          q.bankNumber = i;
+          bank.push(q);
+        }
+      });
+      return bank;
+    }
+
+    const questionBank = generateQuestionBank();
+    let activeSet = [];
+    let selectedAnswers = {};
+    let submitted = false;
+
+    function getFilteredBank() {
+      const discipline = document.getElementById("disciplineFilter").value;
+      const difficulty = document.getElementById("difficultyFilter").value;
+
+      return questionBank.filter(q => {
+        const disciplineMatch = discipline === "All" || q.discipline === discipline;
+        const difficultyMatch = difficulty === "All" || q.difficulty === difficulty;
+        return disciplineMatch && difficultyMatch;
+      });
+    }
+
+    function buildPracticeSet() {
+      const filtered = getFilteredBank();
+      const setSize = Number(document.getElementById("setSize").value);
+      const shuffled = shuffle(filtered, Date.now());
+      activeSet = setSize >= filtered.length ? shuffled : shuffled.slice(0, setSize);
+      selectedAnswers = {};
+      submitted = false;
+      renderQuestions();
+    }
+
+    function renderQuestions() {
+      const filtered = getFilteredBank();
+      if (activeSet.length === 0) {
+        const setSize = Number(document.getElementById("setSize").value);
+        activeSet = setSize >= filtered.length ? filtered : shuffle(filtered, 101).slice(0, setSize);
+      } else {
+        const activeIds = new Set(filtered.map(q => q.id));
+        activeSet = activeSet.filter(q => activeIds.has(q.id));
+        if (activeSet.length === 0) buildPracticeSet();
+      }
+
+      const questionList = document.getElementById("questionList");
+      questionList.innerHTML = "";
+
+      activeSet.forEach((q, index) => {
+        const card = document.createElement("div");
+        card.className = "question-card";
+
+        const selected = selectedAnswers[q.id];
+        const optionsHtml = q.options.map(option => {
+          let className = "option";
+          if (selected === option) className += " selected";
+          if (submitted && option === q.answer) className += " correct";
+          if (submitted && selected === option && option !== q.answer) className += " incorrect";
+
+          return `<div class="${className}" onclick="selectAnswer('${q.id}', '${escapeOption(option)}')">${option}</div>`;
+        }).join("");
+
+        card.innerHTML = `
+          <div class="question-header">
+            <div>
+              <div class="badges">
+                <span class="badge">${q.discipline}</span>
+                <span class="badge gray">${q.topic}</span>
+                <span class="badge gray">${q.difficulty}</span>
+                <span class="badge gold">Bank #${q.bankNumber}</span>
+              </div>
+              <div class="question-title">Question ${index + 1}: ${q.question}</div>
+            </div>
+          </div>
+          <div class="options">${optionsHtml}</div>
+          <div class="explanation ${submitted ? "show" : ""}">
+            <strong>Correct Answer:</strong> ${q.answer}<br />
+            <strong>Explanation:</strong> ${q.explanation}
+          </div>
+        `;
+
+        questionList.appendChild(card);
+      });
+
+      updateSummary();
+      renderAnalytics();
+    }
+
+    function escapeOption(value) {
+      return String(value).replace(/'/g, "\\'");
+    }
+
+    function selectAnswer(questionId, option) {
+      if (submitted) return;
+      selectedAnswers[questionId] = option;
+      renderQuestions();
+    }
+
+    function submitTest() {
+      submitted = true;
+      renderQuestions();
+      document.getElementById("topicAnalytics").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function startFreshTest() {
+      selectedAnswers = {};
+      submitted = false;
+      renderQuestions();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function calculateScore(set) {
+      if (set.length === 0) return 0;
+      const correct = set.filter(q => selectedAnswers[q.id] === q.answer).length;
+      return Math.round((correct / set.length) * 100);
+    }
+
+    function updateSummary() {
+      const answered = activeSet.filter(q => selectedAnswers[q.id]).length;
+      const score = submitted ? calculateScore(activeSet) : 0;
+
+      document.getElementById("bankSize").textContent = questionBank.length.toLocaleString();
+      document.getElementById("totalQuestions").textContent = activeSet.length;
+      document.getElementById("answeredQuestions").textContent = answered;
+      document.getElementById("scoreMetric").textContent = score + "%";
+
+      let readiness = "Not Rated";
+      if (submitted) {
+        if (score >= 80) readiness = "Strong";
+        else if (score >= 65) readiness = "Developing";
+        else readiness = "Needs Work";
+      }
+      document.getElementById("readinessMetric").textContent = readiness;
+    }
+
+    function renderAnalytics() {
+      const topicAnalytics = document.getElementById("topicAnalytics");
+      const recommendations = document.getElementById("recommendations");
+
+      if (!submitted) {
+        topicAnalytics.innerHTML = `<p style="color: var(--muted);">Submit the test to view analytics.</p>`;
+        recommendations.innerHTML = `
+          <div class="recommendation">
+            <strong>Before submission</strong>
+            Complete the practice set to generate topic-level diagnostics and recommended study priorities.
+          </div>
+          <div class="recommendation">
+            <strong>Available bank</strong>
+            The prototype contains ${questionBank.length.toLocaleString()} generated questions: 500 Easy, 500 Medium, and 500 Hard.
+          </div>
+        `;
+        return;
+      }
+
+      const topicStats = {};
+      const disciplineStats = {};
+      const difficultyStats = {};
+
+      activeSet.forEach(q => {
+        updateGroup(topicStats, q.topic, q);
+        updateGroup(disciplineStats, q.discipline, q);
+        updateGroup(difficultyStats, q.difficulty, q);
+      });
+
+      topicAnalytics.innerHTML = renderBars(topicStats) + `
+        <h2 style="margin-top: 28px;">Difficulty-Level Performance</h2>
+        ${renderBars(difficultyStats)}
+      `;
+
+      const weakTopics = Object.keys(topicStats).filter(topic => percent(topicStats[topic]) < 70);
+      const score = calculateScore(activeSet);
+      let recommendationHtml = "";
+
+      if (score >= 80) {
+        recommendationHtml += `
+          <div class="recommendation">
+            <strong>Overall readiness: strong</strong>
+            Continue with full-length mixed sets, timed review, and reference-handbook fluency practice.
+          </div>
+        `;
+      } else if (score >= 65) {
+        recommendationHtml += `
+          <div class="recommendation">
+            <strong>Overall readiness: developing</strong>
+            Strengthen weak topics before moving into repeated 80-question mock exams.
+          </div>
+        `;
+      } else {
+        recommendationHtml += `
+          <div class="recommendation">
+            <strong>Overall readiness: needs improvement</strong>
+            Return to fundamentals, solve topic-specific questions, and retake a shorter diagnostic set.
+          </div>
+        `;
+      }
+
+      if (weakTopics.length > 0) {
+        recommendationHtml += `
+          <div class="recommendation">
+            <strong>Priority topics</strong>
+            Focus the next study session on: ${weakTopics.join(", ")}.
+          </div>
+        `;
+      } else {
+        recommendationHtml += `
+          <div class="recommendation">
+            <strong>Balanced topic performance</strong>
+            No topic fell below the 70% threshold in this practice set.
+          </div>
+        `;
+      }
+
+      recommendationHtml += `
+        <div class="recommendation">
+          <strong>Commercial development note</strong>
+          The next production step is to replace generated template questions with technically reviewed, uniquely authored items and store them in a database with fields for discipline, topic, subtopic, difficulty, reference source, solution time, and psychometric quality.
+        </div>
+      `;
+
+      recommendations.innerHTML = recommendationHtml;
+    }
+
+    function updateGroup(group, key, q) {
+      if (!group[key]) group[key] = { total: 0, correct: 0 };
+      group[key].total += 1;
+      if (selectedAnswers[q.id] === q.answer) group[key].correct += 1;
+    }
+
+    function percent(item) {
+      return Math.round((item.correct / item.total) * 100);
+    }
+
+    function renderBars(group) {
+      return Object.keys(group).sort().map(key => {
+        const p = percent(group[key]);
+        return `
+          <div class="bar-row">
+            <div class="bar-label"><span>${key}</span><span>${p}% (${group[key].correct}/${group[key].total})</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width: ${p}%;"></div></div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    buildPracticeSet();
+  </script>
+</body>
+</html>
